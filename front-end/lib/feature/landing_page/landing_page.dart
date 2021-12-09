@@ -1,55 +1,59 @@
 import 'package:flutter/material.dart';
+import 'package:myntra/feature/categories/categories.dart';
+import 'package:myntra/feature/home_page/home_page.dart';
+import 'package:myntra/feature/profile/profile.dart';
 import 'package:myntra/foundation/sp_icon/sp_icon.dart';
 
 class LandingPage extends StatefulWidget {
-  const LandingPage({Key? key}) : super(key: key);
+  LandingPage({Key? key}) : super(key: key);
 
   @override
   _LandingPageState createState() => _LandingPageState();
 }
 
 class _LandingPageState extends State<LandingPage> {
-  int _currentIndex = 0;
-
+  int currentIndex = 0;
+  List<Widget> pages = [HomePage(), Categories(), Profile()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-        selectedLabelStyle: const TextStyle(fontSize: 13),
+        currentIndex: currentIndex,
         selectedItemColor: const Color(0xfffe416c),
-        currentIndex: _currentIndex,
-        onTap: (index) => {
+        selectedLabelStyle: const TextStyle(fontSize: 13),
+        onTap: (index) {
           setState(() {
-            _currentIndex = index;
-          })
+            currentIndex = index;
+          });
         },
         items: [
           BottomNavigationBarItem(
             icon: SPIcon(
-              assetName: "logo-black.png",
+              assetname: "logo-black.png",
               index: 0,
-              currentIndex: _currentIndex,
+              currentIndex: currentIndex,
             ),
             label: "Home",
           ),
           BottomNavigationBarItem(
             icon: SPIcon(
-              assetName: "categories.png",
+              assetname: "categories.png",
               index: 1,
-              currentIndex: _currentIndex,
+              currentIndex: currentIndex,
             ),
             label: "Categories",
           ),
           BottomNavigationBarItem(
             icon: SPIcon(
-              assetName: "profile.png",
+              assetname: "profile.png",
               index: 2,
-              currentIndex: _currentIndex,
+              currentIndex: currentIndex,
             ),
             label: "Profile",
           ),
         ],
       ),
+      body: pages[currentIndex],
     );
   }
 }

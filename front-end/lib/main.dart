@@ -15,10 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: "Myntra",
-      theme: ThemeData(
-        fontFamily: "Mulish",
-      ),
-      home: const LandingPage(),
+      home: LandingPage(),
     );
   }
 }
